@@ -66,6 +66,39 @@ I prefer this plot because it is easier on the eyes and the data is organized mo
 
 ## Exercise 5
 
+*Do some states have counties that tend to be geographically larger than others?* To explore this question, create side-by-side boxplots of area (`area`) of a county based on state (`state`).
+
+```{r}
+ggplot(midwest, 
+       aes(x = state, y = area, color = state)) +
+  geom_boxplot() +
+  labs("Size of Counties by States in the Midwest")
+  
+```
+
+-   Describe what you observe from the plot.
+
+    From this plot, we can see the area of different counties in states in the Midwest.
+
+-   Which state has the single largest county? How do you know based on the plot?
+
+Wisconsin has the single largest county because its box distribution is the largest in terms of area.
+
 ## Exercise 6
+
+*Do some states have a higher percentage of their counties located in a metropolitan area?* Create a segmented bar chart with one bar per state and the fill determined by the distribution of `metro`, whether a county is considered in a metro area. The y axis of the segmented barplot should range from 0 to 1.
+
+-   What do you notice from the plot?
+
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+```
+
+```{r}
+ggplot(midwest, aes(x=state, fill = metro))+
+  geom_bar(position="fill")+
+  labs(title = "Percentage of Metros in Midwest States")
+```
 
 ## Exercise 7
