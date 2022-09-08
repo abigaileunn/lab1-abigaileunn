@@ -43,7 +43,26 @@ ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))
 
 ## Exercise 3
 
+Describe what you observe in the plot from the previous exercise. In your description, include similarities and differences in the patterns across states.
+
+We can see that Illinois has the highest percentage of individuals with a college degree. Wisconsin is a bit of an outlier state --the state stands out on the most on scatter plot because it is not clumped in with the other states. A common statistic is that 10-20% of individuals are below the poverty line and 15% have a college degree.
+
 ## Exercise 4
+
+Now, let\'s examine the relationship between the same two variables, using a separate plot for each state. Label the axes and give the plot a title. Use `geom_smooth` with the argument `se = FALSE` to add a smooth curve fit to the data. Which plot do you prefer - this plot or the plot in Ex 2? Briefly explain your choice.
+
+```{r}
+ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))+
+  geom_point()+
+  labs(title = "having a college degree vs. being under the poverty line by state", x = "Percentage Below Poverty Line", y = "Percentage with a College Degree") +
+  facet_wrap(~state)+
+  scale_color_viridis_d(option = "C", end = 0.8) +
+  theme_minimal() +
+  geom_smooth(se = FALSE)
+
+```
+
+I prefer this plot because it is easier on the eyes and the data is organized more clearly and cleanly. You can see the association between the poverty line and college degree better.
 
 ## Exercise 5
 
