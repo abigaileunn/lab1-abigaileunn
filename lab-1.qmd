@@ -1,6 +1,6 @@
 ---
 title: "Lab 1 - Data visualization"
-author: "[INSERT NAME]"
+author: "Abigail Eun"
 format: pdf
 editor: visual
 ---
@@ -12,27 +12,41 @@ editor: visual
 #| message: false
 
 library(tidyverse)
+library(viridis)
 ```
 
 ## Exercise 1
 
-(Type your answer to Exercise 1 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+glimpse(midwest)
+view(midwest)
+```
+
+```{r}
+#this creates a histogram for population density 
+ggplot(data = midwest, aes(x = popdensity, fill = "pink")) +
+  geom_histogram(binwidth = 10000) +
+ labs(title = "histogram-population-density") 
+```
+
+The graph is right-skewed. There are a few outliers: one between 50,000 and 75,000, and another one between 75,000 and 100,000.
 
 ## Exercise 2
 
-(Type your answer to Exercise 2 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))+
+  geom_point()+
+  labs(title = "having a college degree vs. being under the poverty line", x = "Percentage Below Poverty Line", y = "Percentage with a College Degree") +
+  scale_color_viridis_d(option = "C", end = 0.8) +
+  theme_minimal() 
+```
 
 ## Exercise 3
 
-(Type your answer to Exercise 3 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
-
 ## Exercise 4
-
 
 ## Exercise 5
 
-
 ## Exercise 6
-
 
 ## Exercise 7
