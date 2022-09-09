@@ -49,7 +49,7 @@ We can see that Illinois has the highest percentage of individuals with a colleg
 
 ## Exercise 4
 
-Now, let\'s examine the relationship between the same two variables, using a separate plot for each state. Label the axes and give the plot a title. Use `geom_smooth` with the argument `se = FALSE` to add a smooth curve fit to the data. Which plot do you prefer - this plot or the plot in Ex 2? Briefly explain your choice.
+Now, let's examine the relationship between the same two variables, using a separate plot for each state. Label the axes and give the plot a title. Use `geom_smooth` with the argument `se = FALSE` to add a smooth curve fit to the data. Which plot do you prefer - this plot or the plot in Ex 2? Briefly explain your choice.
 
 ```{r}
 ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))+
@@ -102,3 +102,13 @@ ggplot(midwest, aes(x=state, fill = metro))+
 ```
 
 ## Exercise 7
+
+```{r}
+ggplot(data = midwest,
+       aes(x= percollege , y=popdensity, color = percollege)) +
+  geom_point(show.legend = TRUE, size = 2, alpha = 0.5) +
+  labs(title = "Do people with college degrees tend to live in denser areas?", x = "% of college educated", y = "Population density (person/unit area", fill = "% below \n poverty line")+
+    facet_wrap(~state) +
+  theme_minimal()
+  
+```
