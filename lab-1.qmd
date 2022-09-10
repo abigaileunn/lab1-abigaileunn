@@ -24,9 +24,9 @@ view(midwest)
 
 ```{r}
 #this creates a histogram for population density 
-ggplot(data = midwest, aes(x = popdensity, fill = "pink")) +
+ggplot(data = midwest, aes(x = popdensity)) +
   geom_histogram(binwidth = 10000) +
- labs(title = "histogram-population-density") 
+ labs(title = "Histogram of Population Density in the Midwest", x= "Population Density", y = "Count") 
 ```
 
 The graph is right-skewed. There are a few outliers: one between 50,000 and 75,000, and another one between 75,000 and 100,000.
@@ -34,27 +34,31 @@ The graph is right-skewed. There are a few outliers: one between 50,000 and 75,0
 ## Exercise 2
 
 ```{r}
-ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))+
+ggplot(data = midwest, aes(x = percollege, y = percbelowpoverty, color = state))+
   geom_point()+
-  labs(title = "having a college degree vs. being under the poverty line", x = "Percentage Below Poverty Line", y = "Percentage with a College Degree") +
+  labs(title = "Does having a college degree affect poverty levels?", y = "Percentage Below Poverty Line", x = "Percentage with a College Degree") +
   scale_color_viridis_d(option = "C", end = 0.8) +
   theme_minimal() 
 ```
 
 ## Exercise 3
 
-Describe what you observe in the plot from the previous exercise. In your description, include similarities and differences in the patterns across states.
+**Describe what you observe in the plot from the previous exercise. In your description, include similarities and differences in the patterns across states.**
 
-We can see that Illinois has the highest percentage of individuals with a college degree. Wisconsin is a bit of an outlier state --the state stands out on the most on scatter plot because it is not clumped in with the other states. A common statistic is that 10-20% of individuals are below the poverty line and 15% have a college degree.
+The scatterplot is trying to show how the % of ppl below the poverty rate might change depending on the % of people with a college education (how Y changes with X). We can see that when 50% of individuals have a college degree, they are a minority in being below the poverty line.
 
-## Exercise 4
+With lower percentages of college degrees, the percentage of being below the poverty line is higher. Generally, all the states average out to 10-20% having a college degree and around 10-20% of these individuals being under the poverty line.
+
+Illinois has the highest percentage of individuals under the poverty line, while Wisconsin has the lowest percentage of individuals under the poverty line.
+
+# Exercise 4
 
 Now, let's examine the relationship between the same two variables, using a separate plot for each state. Label the axes and give the plot a title. Use `geom_smooth` with the argument `se = FALSE` to add a smooth curve fit to the data. Which plot do you prefer - this plot or the plot in Ex 2? Briefly explain your choice.
 
 ```{r}
-ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))+
+ggplot(data = midwest, aes(x = percollege, y = percbelowpoverty, color = state))+
   geom_point()+
-  labs(title = "having a college degree vs. being under the poverty line by state", x = "Percentage Below Poverty Line", y = "Percentage with a College Degree") +
+  labs(title = "Does having a college degree affect poverty levels?", y = "Percentage Below Poverty Line", x = "Percentage with a College Degree") +
   facet_wrap(~state)+
   scale_color_viridis_d(option = "C", end = 0.8) +
   theme_minimal() +
@@ -62,7 +66,7 @@ ggplot(data = midwest, aes(y = percollege, x = percbelowpoverty, color = state))
 
 ```
 
-I prefer this plot because it is easier on the eyes and the data is organized more clearly and cleanly. You can see the association between the poverty line and college degree better.
+I prefer this plot because it is easier on the eyes and the data is organized more clearly and cleanly. You can see the association between the poverty line and college degree better, especially since it connects all the points based on distinct points.
 
 ## Exercise 5
 
@@ -72,7 +76,7 @@ I prefer this plot because it is easier on the eyes and the data is organized mo
 ggplot(midwest, 
        aes(x = state, y = area, color = state)) +
   geom_boxplot() +
-  labs("Size of Counties by States in the Midwest")
+  labs("Size of Counties by States in the Midwest", x = "State", y = "Area")
   
 ```
 
@@ -98,7 +102,7 @@ midwest <- midwest |>
 ```{r}
 ggplot(midwest, aes(x=state, fill = metro))+
   geom_bar(position="fill")+
-  labs(title = "Percentage of Metros in Midwest States")
+  labs(title = "Percentage of Metros in Midwest States", y = "Percentage", x = "State")
 ```
 
 ## Exercise 7
